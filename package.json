@@ -1,0 +1,35 @@
+{
+  "name": "cheremosh-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "scrape": "node scripts/scrape.mjs",
+    "deploy": "bash scripts/deploy.sh",
+    "migrate": "npm run scrape && npm run build && npm run deploy"
+  },
+  "dependencies": {
+    "next": "16.2.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/turndown": "^5.0.6",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.4",
+    "jsdom": "^29.0.2",
+    "p-limit": "^7.3.0",
+    "puppeteer": "^24.42.0",
+    "tailwindcss": "^4",
+    "turndown": "^7.2.4",
+    "typescript": "^5"
+  }
+}

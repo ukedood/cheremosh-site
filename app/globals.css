@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-background: #fafaf7;
+  --color-ink: #111111;
+  --color-muted: #6b6b6b;
+  --color-accent: #0057b7;
+  --color-accent-light: #e8f0fb;
+  --color-border: #e5e5e1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Prose styles for scraped content */
+.prose-scraped {
+  max-width: 70ch;
+  line-height: 1.7;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+}
+
+.prose-scraped h1,
+.prose-scraped h2,
+.prose-scraped h3,
+.prose-scraped h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  color: var(--color-ink);
+}
+
+.prose-scraped h1 { font-size: 1.75rem; }
+.prose-scraped h2 { font-size: 1.375rem; }
+.prose-scraped h3 { font-size: 1.125rem; }
+
+.prose-scraped p {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+
+.prose-scraped a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-scraped a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.prose-scraped img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose-scraped iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  border-radius: 4px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose-scraped ul,
+.prose-scraped ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+
+.prose-scraped li {
+  margin-bottom: 0.4em;
+}
+
+.prose-scraped table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
+  font-size: 0.9375rem;
+}
+
+.prose-scraped td,
+.prose-scraped th {
+  padding: 0.5em 0.75em;
+  border: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.prose-scraped th {
+  background: var(--color-accent-light);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.prose-scraped blockquote {
+  border-left: 3px solid var(--color-accent);
+  margin-left: 0;
+  padding-left: 1.25em;
+  color: var(--color-muted);
+  font-style: italic;
+}
