@@ -115,16 +115,32 @@ async function extractContent(page, url) {
       title = docTitle.split(/[|\-–]/)[0].trim();
     }
 
+    // New Google Sites puts the page heading in [role=main] but body content
+    // in .QZ3zWd (a sibling). Try to find the largest content container.
     const contentSelectors = [
-      '[role="main"]', 'article', '.hJDwNd', '.IZ65Hb',
-      '#sites-canvas-main-content', '#sites-canvas-main', '.oKdM2c', 'main',
+      '.QZ3zWd',                      // New Google Sites body content
+      '.hJDwNd', '.IZ65Hb',
+      '#sites-canvas-main-content', '#sites-canvas-main',
+      'article', 'main',
     ];
     let contentEl = null;
     for (const sel of contentSelectors) {
       const el = document.querySelector(sel);
-      if (el && el.innerText && el.innerText.trim().length > 10) { contentEl = el; break; }
+      if (el && el.innerText && el.innerText.trim().length > 50) { contentEl = el; break; }
     }
-    if (!contentEl) contentEl = document.body;
+    // If still nothing, grab the div with the most text (excluding nav/header)
+    if (!contentEl) {
+      const bodyDivs = [...document.querySelectorAll('div')]
+        .filter(d => !d.closest('nav') && !d.closest('header') && !d.closest('footer'))
+        .sort((a, b) => (b.innerText?.length || 0) - (a.innerText?.length || 0));
+      contentEl = bodyDivs[0] || document.body;
+    }
+    // Also grab the title heading separately if it's not in contentEl
+    const titleHeading = document.querySelector('[role="main"] h1, [role="main"] h2');
+    if (titleHeading && contentEl && !contentEl.contains(titleHeading)) {
+      const h1Clone = titleHeading.cloneNode(true);
+      contentEl.insertBefore(h1Clone, contentEl.firstChild);
+    }
 
     ['script','style','noscript','nav','header','footer',
      '[aria-label="Site navigation"]','[aria-label="Site pages"]',
