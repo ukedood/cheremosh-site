@@ -4,8 +4,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
-  basePath: '/cheremosh-site',
-  assetPrefix: '/cheremosh-site',
   images: {
     unoptimized: true,
     remotePatterns: [

@@ -34,7 +34,7 @@ if ! command -v vercel &>/dev/null; then
 fi
 
 echo "Deploying to Vercel production..."
-OUTPUT=$(vercel --prod --yes --token "$VERCEL_TOKEN" 2>&1)
+OUTPUT=$(vercel --prod --yes --token "$VERCEL_TOKEN" --scope ukeclaude-2284s-projects 2>&1)
 echo "$OUTPUT"
 
 PROD_URL=$(echo "$OUTPUT" | grep -oE 'https://[a-zA-Z0-9._-]+\.vercel\.app' | tail -1)
